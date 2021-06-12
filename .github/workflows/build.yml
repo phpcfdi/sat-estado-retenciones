@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.4', '8.0']
 
     steps:
 
@@ -28,9 +28,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: # setup extensions as in composer.json
+          extensions: json, dom
           coverage: none
-          tools: composer:v2, cs2pr, phpcs, php-cs-fixer, phpstan, psalm, infection
+          tools: composer:v2, cs2pr, phpcs, php-cs-fixer, phpstan
         env:
           fail-fast: true
 

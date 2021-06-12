@@ -14,7 +14,17 @@
 
 ## Acerca de phpcfdi/sat-estado-retenciones
 
-*write here the reason to exists of this library*
+El Servicio de Administración Tributaria en México (SAT) expone algunos servicios para la comprobación fiscal.
+
+Para el caso de *CFDI regulares* (CFDI de ingresos, egresos, traslados y nómina) ofrece un web service de tipo
+SOAP para poder conocer el estado (vigente o cancelado) de un CFDI.
+
+Para el caso de *CFDI de Retenciones e Información de Pagos (CFDI de retenciones) no ofrece un web service.
+El SAT solo permite consultar su estado a través de una página de internet ubicada en
+<https://prodretencionverificacion.clouda.sat.gob.mx/> y aparentemente protegida por un *captcha*.
+
+Esta librería permite aprovechar que la herramienta del SAT tiene una incorrecta implementación del *captcha* y
+no hay necesidad de resolverlo. Además, convierte la respuesta de la página de internet a propiedades de un objeto.
 
 ## Instalación
 
@@ -24,12 +34,98 @@ Usa [composer](https://getcomposer.org/)
 composer require phpcfdi/sat-estado-retenciones
 ```
 
-## Uso básico
+## Ejemplo de uso
 
 ```php
 <?php
-// write here an quick example
+
+use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
+use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
+use PhpCfdi\SatEstadoRetenciones\Service;
+
+$contents = file_get_contents('archivo-de-retenciones.xml');
+
+$service = new Service();
+$parameters = $service->makeParametersFromXml($contents);
+
+try {
+    $result = $service->query($parameters);
+} catch (RetentionNotFoundException $exception) {
+    echo "El CFDI de retenciones {$exception->getParameters()->getUuid()} no fue encontrado.\n";
+    return;
+} catch (HttpClientException $exception) {
+    echo "No se pudo conectar al servicio en la URL {$exception->getUrl()}.\n";
+    return;
+}
+
+if ($result->getStatusDocument()->isActive()) {
+    echo "El CFDI de retenciones {$result->getUUID()} de {$result->getReceiverName()} se encuentra ACTIVO.\n";
+}
 ```
+
+## Funcionamiento
+
+Esta librería ofrece un objeto de entrada `Service`, con el que se pueden ejecutar dos tareas:
+generar los parámetros de consulta `Parameters` y consultar la página de internet con estos parámetros.
+El resultado de la consulta es un objeto `Result`.
+
+Actualmente se aprovecha el error de la página del SAT donde no está implementando correctamente el *captcha*,
+por lo que se puede consultar el estado brincando esta medida. Si en un futuro el SAT implenta un *Web Service*
+o implementa correctamente el *captcha*, se espera que esta librería tenga que cambiar muy poco su interfaz de uso.
+
+### Construcción de parámetros
+
+El objeto de parámetros se puede construir a partir del UUID, RFC del emisor y RFC del receptor (si existe).
+Igualmente, si se cuenta con el XML como texto o como un objeto DOM es posible obtener los
+parámetros con los métodos `Service::makeParametersFromXml(string $xml): Parameters`
+y `Service::makeParametersFromDocument(DOMDocument $document): Parameters` respectivamente.
+
+Tanto los parámetros `Parameters` como el resultado `Result` implementan la interfaz `JsonSerializable`,
+es decir, que exportan sus datos cuando se usa la función `json_encode()`.
+
+### Ejecución de la consulta
+
+#### Método `Service::query(Parameters $parameters): Result`
+
+Ejecuta la consulta del estado de CFDI de retenciones y entrega el resultado en un objeto `Result`.
+Si el CFDI de retenciones no fue encontrado genera una excepción de tipo `RetentionNotFoundException`.
+Si la consulta falla por un error de conexión con el servidor se genera una excepción de tipo `HttpClientException`.
+
+#### Método `Service::queryOrNull(Parameters $parameters): ?Result`
+
+Existe el método `queryOrNull`, que es idéntico a `query` pero en lugar de generar la excepción
+`RetentionNotFoundException` regresará `NULL`.
+
+### Resultado
+
+Al ejecutar la consulta se devuelve un objeto `Result` que contiene todas las propiedades que entrega
+la página web. Adicionalmente cuenta con 3 propiedades especiales para interpretar el estado del documento
+(vigente o cancelado), el estado EFOS (incluido o excluido) y el total como valor flotante.
+
+### Estrategia *scraper*
+
+Actualmente se obtiene el estado de CFDI de retenciones haciendo *scraping* a la página del SAT.
+
+El scraper puede ser sustituido por otro objeto que implemente la interfaz `ScraperInterface`.
+
+La implementación de `ScraperInterface` está en la clase `Scraper` y depende directamente de un
+cliente HTTP para hacer una única petición de tipo `GET`.
+
+El cliente puede ser sustituido por otro objeto que implemente la interfaz `HttpClientInterface`.
+
+La implementación de `HttpClientInterface` está en la clase `PhpStreamContextHttpClient`,
+que utiliza los *PHP Streams* para poder ejecutar la petición a la página del SAT.
+
+En caso de querer sustiuir esta implementación por alguna librería como *Guzzle* o *Symfony HTTP Client*,
+será necesario crear un objeto que implemente la interfaz `HttpClientInterface`.
+
+### Excepciones
+
+Cuando se ejecute la consulta de parámetros podrían ocurrir dos excepciones:
+`RetentionNotFoundException` cuando no se encontró el CFDI de retenciones,
+y `HttpClientException` cuando hubo un error para contactar al servicio.
+
+Ambas excepciones son de tipo `\RuntimeException` y además implementan la interfaz `SatEstadoRetencionesException`.
 
 ## Soporte
 
@@ -68,7 +164,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [coverage]: https://scrutinizer-ci.com/g/phpcfdi/sat-estado-retenciones/code-structure/main/code-coverage/src
 [downloads]: https://packagist.org/packages/phpcfdi/sat-estado-retenciones
 
-[badge-source]: http://img.shields.io/badge/source-phpcfdi/sat-estado-retenciones-blue?style=flat-square
+[badge-source]: https://img.shields.io/badge/source-phpcfdi/sat--estado--retenciones-blue?style=flat-square
 [badge-release]: https://img.shields.io/github/release/phpcfdi/sat-estado-retenciones?style=flat-square
 [badge-license]: https://img.shields.io/github/license/phpcfdi/sat-estado-retenciones?style=flat-square
 [badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/sat-estado-retenciones/build/main?style=flat-square
