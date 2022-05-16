@@ -117,7 +117,7 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper();
         $this->assertSame($expected, $scraper->obtainMillisecondsParameter($microtime));
         $this->assertGreaterThanOrEqual(
-            $scraper->obtainMillisecondsParameter(time()),
+            $scraper->obtainMillisecondsParameter((float) time()),
             $scraper->obtainMillisecondsParameter()
         );
     }
