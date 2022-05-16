@@ -16,7 +16,7 @@ final class ScraperTest extends TestCase
 {
     public function testObtainStatusUsingFakeHttpClientExistent(): void
     {
-        $fakeHttpClient = new class() implements HttpClientInterface {
+        $fakeHttpClient = new class () implements HttpClientInterface {
             public function getContents(string $url): string
             {
                 return TestCase::fileContents('result.html');
@@ -37,7 +37,7 @@ final class ScraperTest extends TestCase
 
     public function testObtainStatusUsingFakeHttpClientNotFound(): void
     {
-        $fakeHttpClient = new class() implements HttpClientInterface {
+        $fakeHttpClient = new class () implements HttpClientInterface {
             public function getContents(string $url): string
             {
                 return TestCase::fileContents('result-not-found.html');
@@ -58,7 +58,7 @@ final class ScraperTest extends TestCase
 
     public function testObtainStatusUsingFakeHttpClientError(): void
     {
-        $fakeHttpClient = new class() implements HttpClientInterface {
+        $fakeHttpClient = new class () implements HttpClientInterface {
             public function getContents(string $url): string
             {
                 throw new HttpClientException($url, 404, '');

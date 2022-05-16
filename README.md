@@ -69,7 +69,7 @@ Esta librería ofrece un objeto de entrada `Service`, con el que se pueden ejecu
 generar los parámetros de consulta `Parameters` y consultar la página de internet con estos parámetros.
 El resultado de la consulta es un objeto `Result`.
 
-Actualmente se aprovecha el error de la página del SAT donde no está implementando correctamente el *captcha*,
+Actualmente, se aprovecha el error de la página del SAT donde no está implementando correctamente el *captcha*,
 por lo que se puede consultar el estado brincando esta medida. Si en un futuro el SAT implenta un *Web Service*
 o implementa correctamente el *captcha*, se espera que esta librería tenga que cambiar muy poco su interfaz de uso.
 
@@ -99,12 +99,12 @@ Existe el método `queryOrNull`, que es idéntico a `query` pero en lugar de gen
 ### Resultado
 
 Al ejecutar la consulta se devuelve un objeto `Result` que contiene todas las propiedades que entrega
-la página web. Adicionalmente cuenta con 3 propiedades especiales para interpretar el estado del documento
+la página web. Adicionalmente, cuenta con 3 propiedades especiales para interpretar el estado del documento
 (vigente o cancelado), el estado EFOS (incluido o excluido) y el total como valor flotante.
 
 ### Estrategia *scraper*
 
-Actualmente se obtiene el estado de CFDI de retenciones haciendo *scraping* a la página del SAT.
+Actualmente, se obtiene el estado de CFDI de retenciones haciendo *scraping* a la página del SAT.
 
 El scraper puede ser sustituido por otro objeto que implemente la interfaz `ScraperInterface`.
 

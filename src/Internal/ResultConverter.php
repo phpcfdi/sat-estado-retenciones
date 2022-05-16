@@ -20,14 +20,10 @@ class ResultConverter
     public function convertCrawler(Crawler $crawler): Result
     {
         $labels = $crawler->filter('#tbl_resultado th')->each(
-            function (Crawler $th): string {
-                return $th->text();
-            }
+            fn (Crawler $th): string => $th->text()
         );
         $values = $crawler->filter('#tbl_resultado td')->each(
-            function (Crawler $td): string {
-                return $td->text();
-            }
+            fn (Crawler $td): string => $td->text()
         );
 
         $dataValues = array_combine($labels, $values) ?: [];

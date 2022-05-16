@@ -15,6 +15,7 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 - Migrar de `develop/install-development-tools` a `phive`.
 - Se actualiza el flujo del proceso de integración continua para que los pasos sean trabajos.
 - Se incluye PHP 8.1 en el proceso de integración continua.
+- Se actualizan las reglas de estilo de código para basarse en las últimas revisiones de PhpCfdi.
 
 ## Versión 1.0.0
 
