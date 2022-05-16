@@ -6,6 +6,7 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 ## Versión 1.0.1
 
+- Se actualiza el año del archivo de licencia a 2022.
 - Se corrige el proceso de integración continua de los problemas detectados por PHPStan.
 - Se corrige la exclusión del archivo de configuración de PHPStan.
 - Se corrige la exclusión del archivo de configuración de PHP Coding Standards Fixer.
