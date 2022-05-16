@@ -64,7 +64,7 @@ Considera las siguientes directrices:
 ```shell
 # Actualiza tus dependencias
 composer update
-composer dev:install
+phive update
 
 # Verificación de estilo de código
 composer dev:check-style
@@ -77,6 +77,16 @@ composer dev:test
 
 # Ejecución todo en uno: corregir estilo, verificar estilo y correr pruebas
 composer dev:build
+```
+
+## Ejecutar GitHub Actions localmente
+
+Puedes utilizar la herramienta [`act`](https://github.com/nektos/act) para ejecutar las GitHub Actions localmente.
+Según [`actions/setup-php-action`](https://github.com/marketplace/actions/setup-php-action#local-testing-setup)
+puedes ejecutar el siguiente comando para revisar los flujos de trabajo localmente:
+
+```shell
+act -P ubuntu-latest=shivammathur/node:latest -W .github/workflows/build.yml
 ```
 
 [phpCfdi]:      https://github.com/phpcfdi/

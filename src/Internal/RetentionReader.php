@@ -47,6 +47,6 @@ final class RetentionReader
         if (null === $attribute) {
             return '';
         }
-        return $attribute->nodeValue;
+        return $attribute->nodeValue ?? '';
     }
 }

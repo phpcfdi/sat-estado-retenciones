@@ -54,7 +54,7 @@ final class Scraper implements ScraperInterface
 
     public function obtainMillisecondsParameter(float $microtime = null): int
     {
-        $microtime = $microtime ?? microtime(true);
+        $microtime ??= microtime(true);
         return intval($microtime * 1000);
     }
 }
