@@ -37,7 +37,7 @@ jobs:
       - name: Create code coverage
         run: vendor/bin/phpunit --testdox --verbose --coverage-xml=build/coverage --coverage-clover=build/coverage/clover.xml --log-junit=build/coverage/junit.xml
       - name: Store code coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: code-coverage
           path: build/coverage
@@ -93,7 +93,7 @@ jobs:
       - name: Install project dependencies
         run: composer upgrade --no-interaction --no-progress --prefer-dist
       - name: Obtain code coverage
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: code-coverage
           path: build/coverage
