@@ -5,7 +5,6 @@
 /tools/                     export-ignore
 /vendor/                    export-ignore
 /composer.lock              export-ignore
-.phpunit.result.cache       export-ignore
 
 # Do not put this files on a distribution package
 /.github/                   export-ignore
