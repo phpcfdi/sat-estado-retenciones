@@ -39,25 +39,4 @@ final class RetentionReader20Test extends TestCase
         $this->assertSame('AAA010101AAA', $reader->obtainRfcIssuer());
         $this->assertSame('', $reader->obtainRfcReceiver());
     }
-
-    public function testReadOtherXml(): void
-    {
-        $document = new DOMDocument();
-        $document->loadXML('<xml />');
-        $reader = new RetentionReader20($document);
-
-        $this->assertSame('', $reader->obtainUUID());
-        $this->assertSame('', $reader->obtainRfcIssuer());
-        $this->assertSame('', $reader->obtainRfcReceiver());
-    }
-
-    public function testReadEmptyDomDocument(): void
-    {
-        $document = new DOMDocument();
-        $reader = new RetentionReader20($document);
-
-        $this->assertSame('', $reader->obtainUUID());
-        $this->assertSame('', $reader->obtainRfcIssuer());
-        $this->assertSame('', $reader->obtainRfcReceiver());
-    }
 }
