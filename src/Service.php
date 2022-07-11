@@ -7,6 +7,7 @@ namespace PhpCfdi\SatEstadoRetenciones;
 use DOMDocument;
 use PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader10;
+use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader20;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReaderInterface;
 
 final class Service
@@ -75,6 +76,7 @@ final class Service
     {
         /** @var RetentionReaderInterface[] $readers */
         $readers = [
+            new RetentionReader20($document),
             new RetentionReader10($document),
         ];
 
