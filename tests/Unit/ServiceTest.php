@@ -68,6 +68,17 @@ final class ServiceTest extends TestCase
         $this->assertSame('SAZD861013FU2', $parameters->getReceiverRfc());
     }
 
+    public function testMakeParametersFromDocumentWithNonMatchingXml(): void
+    {
+        $service = new Service();
+        $document = new DOMDocument();
+        $document->loadXML('<xml />');
+        $parameters = $service->makeParametersFromDocument($document);
+        $this->assertSame('', $parameters->getUuid());
+        $this->assertSame('', $parameters->getIssuerRfc());
+        $this->assertSame('', $parameters->getReceiverRfc());
+    }
+
     public function testMakeParametersFromContents(): void
     {
         $service = new Service();

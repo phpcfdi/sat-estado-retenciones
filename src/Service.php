@@ -74,21 +74,9 @@ final class Service
      */
     public function makeParametersFromDocument(DOMDocument $document): Parameters
     {
-        /** @var RetentionReaderInterface[] $readers */
-        $readers = [
-            new RetentionReader20($document),
-            new RetentionReader10($document),
-        ];
-
-        $reader = null;
-        foreach ($readers as $test) {
-            if ($test->matchDocument()) {
-                $reader = $test;
-                break;
-            }
-        }
+        $reader = $this->findRetentionReaderToMakeParametersFromDocument($document);
         if (null === $reader) {
-            return new Parameters('', '', '');
+            return Parameters::createEmpty();
         }
 
         return new Parameters(
@@ -96,5 +84,22 @@ final class Service
             $reader->obtainRfcIssuer(),
             $reader->obtainRfcReceiver(),
         );
+    }
+
+    private function findRetentionReaderToMakeParametersFromDocument(DOMDocument $document): ?RetentionReaderInterface
+    {
+        /** @var RetentionReaderInterface[] $readers */
+        $readers = [
+            new RetentionReader20($document),
+            new RetentionReader10($document),
+        ];
+
+        foreach ($readers as $test) {
+            if ($test->matchDocument()) {
+                return $test;
+            }
+        }
+
+        return null;
     }
 }
