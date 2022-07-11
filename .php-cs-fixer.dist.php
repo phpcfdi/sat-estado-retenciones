@@ -18,6 +18,7 @@ return (new PhpCsFixer\Config())
         '@PHP74Migration' => true,
         '@PHP74Migration:risky' => true,
         // symfony
+        'ordered_imports' => ['imports_order' => ['class', 'function', 'const']], // @PSR12 sort_algorithm: none
         'class_attributes_separation' => true,
         'whitespace_after_comma_in_array' => true,
         'no_empty_statement' => true,
@@ -45,6 +46,6 @@ return (new PhpCsFixer\Config())
         PhpCsFixer\Finder::create()
             ->in(__DIR__)
             ->append([__FILE__])
-            ->exclude(['vendor', 'build'])
+            ->exclude(['vendor', 'tools', 'build'])
     )
 ;
