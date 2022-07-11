@@ -9,9 +9,9 @@ use DOMNodeList;
 use DOMXPath;
 
 /** @internal */
-final class RetentionReader
+final class RetentionReader10 implements RetentionReaderInterface
 {
-    private const NS_RETENTION_1 = 'http://www.sat.gob.mx/esquemas/retencionpago/1';
+    private const NS_RETENTION = 'http://www.sat.gob.mx/esquemas/retencionpago/1';
 
     private const NS_TIMBRE_FISCAL_DIGITAL = 'http://www.sat.gob.mx/TimbreFiscalDigital';
 
@@ -20,9 +20,14 @@ final class RetentionReader
     public function __construct(DOMDocument $document)
     {
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('r', self::NS_RETENTION_1);
+        $xpath->registerNamespace('r', self::NS_RETENTION);
         $xpath->registerNamespace('t', self::NS_TIMBRE_FISCAL_DIGITAL);
         $this->xpath = $xpath;
+    }
+
+    public function matchDocument(): bool
+    {
+        return ('1.0' === $this->obtainFirstAttributeValue('/r:Retenciones/@Version'));
     }
 
     public function obtainUUID(): string
