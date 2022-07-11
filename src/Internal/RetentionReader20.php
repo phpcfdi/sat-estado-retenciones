@@ -5,53 +5,24 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
 use DOMDocument;
-use DOMNodeList;
 use DOMXPath;
 
 /** @internal */
-final class RetentionReader20 implements RetentionReaderInterface
+final class RetentionReader20 extends RetentionReaderXpath
 {
-    private const NS_RETENTION = 'http://www.sat.gob.mx/esquemas/retencionpago/2';
-
-    private const NS_TIMBRE_FISCAL_DIGITAL = 'http://www.sat.gob.mx/TimbreFiscalDigital';
-
-    private DOMXPath $xpath;
-
     public function __construct(DOMDocument $document)
     {
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('r', self::NS_RETENTION);
-        $xpath->registerNamespace('t', self::NS_TIMBRE_FISCAL_DIGITAL);
-        $this->xpath = $xpath;
-    }
+        $xpath->registerNamespace('r', 'http://www.sat.gob.mx/esquemas/retencionpago/2');
+        $xpath->registerNamespace('t', 'http://www.sat.gob.mx/TimbreFiscalDigital');
 
-    public function matchDocument(): bool
-    {
-        return ('2.0' === $this->obtainFirstAttributeValue('/r:Retenciones/@Version'));
-    }
-
-    public function obtainUUID(): string
-    {
-        return $this->obtainFirstAttributeValue('/r:Retenciones/r:Complemento/t:TimbreFiscalDigital/@UUID');
-    }
-
-    public function obtainRfcIssuer(): string
-    {
-        return $this->obtainFirstAttributeValue('/r:Retenciones/r:Emisor/@RfcE');
-    }
-
-    public function obtainRfcReceiver(): string
-    {
-        return $this->obtainFirstAttributeValue('/r:Retenciones/r:Receptor/r:Nacional/@RfcR');
-    }
-
-    private function obtainFirstAttributeValue(string $xquery): string
-    {
-        $attributes = $this->xpath->query($xquery, null, false) ?: new DOMNodeList();
-        $attribute = $attributes->item(0);
-        if (null === $attribute) {
-            return '';
-        }
-        return $attribute->nodeValue ?? '';
+        parent::__construct(
+            $xpath,
+            '/r:Retenciones/@Version',
+            '2.0',
+            '/r:Retenciones/r:Complemento/t:TimbreFiscalDigital/@UUID',
+            '/r:Retenciones/r:Emisor/@RfcE',
+            '/r:Retenciones/r:Receptor/r:Nacional/@RfcR'
+        );
     }
 }
