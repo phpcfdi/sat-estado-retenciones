@@ -21,6 +21,11 @@ class Parameters implements JsonSerializable
         $this->receiverRfc = $rfcReceiver;
     }
 
+    public static function createEmpty(): self
+    {
+        return new self('', '', '');
+    }
+
     public function getUuid(): string
     {
         return $this->uuid;

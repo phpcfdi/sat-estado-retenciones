@@ -6,7 +6,9 @@ namespace PhpCfdi\SatEstadoRetenciones;
 
 use DOMDocument;
 use PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface;
-use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader;
+use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader10;
+use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader20;
+use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReaderInterface;
 
 final class Service
 {
@@ -72,12 +74,32 @@ final class Service
      */
     public function makeParametersFromDocument(DOMDocument $document): Parameters
     {
-        $reader = new RetentionReader($document);
+        $reader = $this->findRetentionReaderToMakeParametersFromDocument($document);
+        if (null === $reader) {
+            return Parameters::createEmpty();
+        }
 
         return new Parameters(
             $reader->obtainUUID(),
             $reader->obtainRfcIssuer(),
             $reader->obtainRfcReceiver(),
         );
+    }
+
+    private function findRetentionReaderToMakeParametersFromDocument(DOMDocument $document): ?RetentionReaderInterface
+    {
+        /** @var RetentionReaderInterface[] $readers */
+        $readers = [
+            new RetentionReader20($document),
+            new RetentionReader10($document),
+        ];
+
+        foreach ($readers as $test) {
+            if ($test->matchDocument()) {
+                return $test;
+            }
+        }
+
+        return null;
     }
 }

@@ -11,7 +11,7 @@ class QueryWithRealCfdiTest extends TestCase
 {
     public function testQueryWithRealCfdi(): void
     {
-        $contents = $this->fileContents('real-sample.xml');
+        $contents = $this->fileContents('ret10-mexican-real.xml');
         $service = new Service();
         $parameters = $service->makeParametersFromXml($contents);
         $result = $service->query($parameters);

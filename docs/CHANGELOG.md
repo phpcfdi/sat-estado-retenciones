@@ -4,6 +4,16 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
+## Versión 1.1.0
+
+- Se agrega el soporte para validar retenciones 2.0.
+
+Estos cambios aplican de forma interna:
+
+- Se refactorizaron los lectores de archivos de retenciones para hacerlos específicos a una versión.
+- Se actualizan librerías de desarrollo.
+- Se actualiza el archivo de configuración `.php-cs-fixer.php`.
+
 ## Versión 1.0.1
 
 - Se actualiza el año del archivo de licencia a 2022.
