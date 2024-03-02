@@ -56,11 +56,11 @@ class ResultConverter
     public function createStatusDocumentFromValue(string $value): StatusDocument
     {
         if ('Vigente' === $value) {
-            return StatusDocument::active();
+            return StatusDocument::Active;
         }
         if ('Cancelado' === $value) {
-            return StatusDocument::cancelled();
+            return StatusDocument::Cancelled;
         }
-        return StatusDocument::unknown();
+        return StatusDocument::Unknown;
     }
 }

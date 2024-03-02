@@ -38,23 +38,23 @@ class Result implements JsonSerializable
     private function makeStatusDocument(string $state): StatusDocument
     {
         if ('Vigente' === $state) {
-            return StatusDocument::active();
+            return StatusDocument::Active;
         }
         if ('Cancelado' === $state) {
-            return StatusDocument::cancelled();
+            return StatusDocument::Cancelled;
         }
-        return StatusDocument::unknown();
+        return StatusDocument::Unknown;
     }
 
     private function makeStatusEfos(string $efos): StatusEfos
     {
         if ('100' === $efos) {
-            return StatusEfos::included();
+            return StatusEfos::Included;
         }
         if ('200' === $efos) {
-            return StatusEfos::excluded();
+            return StatusEfos::Excluded;
         }
-        return StatusEfos::unknown();
+        return StatusEfos::Unknown;
     }
 
     public function getStatusDocument(): StatusDocument
