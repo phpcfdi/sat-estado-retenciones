@@ -8,17 +8,8 @@ use JsonSerializable;
 
 class Parameters implements JsonSerializable
 {
-    private string $uuid;
-
-    private string $issuerRfc;
-
-    private string $receiverRfc;
-
-    public function __construct(string $uuid, string $rfcIssuer, string $rfcReceiver)
+    public function __construct(private string $uuid, private string $issuerRfc, private string $receiverRfc)
     {
-        $this->uuid = $uuid;
-        $this->issuerRfc = $rfcIssuer;
-        $this->receiverRfc = $rfcReceiver;
     }
 
     public static function createEmpty(): self

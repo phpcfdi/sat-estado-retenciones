@@ -10,32 +10,14 @@ use DOMXPath;
 /** @internal */
 abstract class RetentionReaderXpath implements RetentionReaderInterface
 {
-    private DOMXPath $xpath;
-
-    private string $queryVersion;
-
-    private string $expectedVersion;
-
-    private string $queryUuid;
-
-    private string $queryRfcIssuer;
-
-    private string $queryRfcReceiver;
-
     public function __construct(
-        DOMXPath $xpath,
-        string $queryVersion,
-        string $expectedVersion,
-        string $queryUuid,
-        string $queryRfcIssuer,
-        string $queryRfcReceiver
+        private DOMXPath $xpath,
+        private string $queryVersion,
+        private string $expectedVersion,
+        private string $queryUuid,
+        private string $queryRfcIssuer,
+        private string $queryRfcReceiver
     ) {
-        $this->xpath = $xpath;
-        $this->queryVersion = $queryVersion;
-        $this->expectedVersion = $expectedVersion;
-        $this->queryUuid = $queryUuid;
-        $this->queryRfcIssuer = $queryRfcIssuer;
-        $this->queryRfcReceiver = $queryRfcReceiver;
     }
 
     public function matchDocument(): bool

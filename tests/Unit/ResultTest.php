@@ -44,8 +44,6 @@ final class ResultTest extends TestCase
     }
 
     /**
-     * @param string $input
-     * @param StatusDocument $expected
      * @dataProvider providerStatusDocument
      */
     public function testStatusDocument(string $input, StatusDocument $expected): void
@@ -79,8 +77,6 @@ final class ResultTest extends TestCase
     }
 
     /**
-     * @param string $input
-     * @param StatusEfos $expected
      * @dataProvider providerStatusEfos
      */
     public function testStatusEfos(string $input, StatusEfos $expected): void

@@ -8,11 +8,8 @@ use JsonSerializable;
 
 final class Amount implements JsonSerializable
 {
-    private float $value;
-
-    public function __construct(float $value)
+    public function __construct(private float $value)
     {
-        $this->value = $value;
     }
 
     public static function newFromString(string $expression): self

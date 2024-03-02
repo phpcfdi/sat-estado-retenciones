@@ -44,7 +44,6 @@ final class ResultConverterTest extends TestCase
     }
 
     /**
-     * @param string $value
      * @testWith [""]
      *           ["Otro valor"]
      *           ["vigente"]

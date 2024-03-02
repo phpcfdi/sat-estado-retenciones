@@ -13,59 +13,27 @@ class Result implements JsonSerializable
 {
     private StatusDocument $statusDocument;
 
-    private string $issuerRfc;
-
-    private string $issuerName;
-
-    private string $receiverRfc;
-
-    private string $receiverName;
-
-    private string $uuid;
-
-    private string $expedition;
-
-    private string $certification;
-
-    private string $pacRfc;
-
-    private string $total;
-
     private Amount $totalAmount;
-
-    private string $state;
-
-    private string $efos;
 
     private StatusEfos $statusEfos;
 
     public function __construct(
-        string $issuerRfc,
-        string $issuerName,
-        string $receiverRfc,
-        string $receiverName,
-        string $uuid,
-        string $expedition,
-        string $certification,
-        string $pacRfc,
-        string $total,
-        string $state,
-        string $efos
+        private string $issuerRfc,
+        private string $issuerName,
+        private string $receiverRfc,
+        private string $receiverName,
+        private string $uuid,
+        private string $expedition,
+        private string $certification,
+        private string $pacRfc,
+        private string $total,
+        private string $state,
+        private string $efos
     ) {
-        $this->statusDocument = $this->makeStatusDocument($state);
-        $this->statusEfos = $this->makeStatusEfos($efos);
-        $this->totalAmount = Amount::newFromString($total);
-        $this->issuerRfc = $issuerRfc;
-        $this->issuerName = $issuerName;
-        $this->receiverRfc = $receiverRfc;
-        $this->receiverName = $receiverName;
-        $this->uuid = strtoupper($uuid);
-        $this->expedition = $expedition;
-        $this->certification = $certification;
-        $this->pacRfc = $pacRfc;
-        $this->total = $total;
-        $this->state = $state;
-        $this->efos = $efos;
+        $this->statusDocument = $this->makeStatusDocument($this->state);
+        $this->statusEfos = $this->makeStatusEfos($this->efos);
+        $this->totalAmount = Amount::newFromString($this->total);
+        $this->uuid = strtoupper($this->uuid);
     }
 
     private function makeStatusDocument(string $state): StatusDocument
