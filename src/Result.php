@@ -59,7 +59,7 @@ class Result implements JsonSerializable
         $this->issuerName = $issuerName;
         $this->receiverRfc = $receiverRfc;
         $this->receiverName = $receiverName;
-        $this->uuid = $uuid;
+        $this->uuid = strtoupper($uuid);
         $this->expedition = $expedition;
         $this->certification = $certification;
         $this->pacRfc = $pacRfc;
