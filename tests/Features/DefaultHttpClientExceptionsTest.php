@@ -28,6 +28,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $url = 'https://non-existent-host.localhost/';
         $exception = $this->catchExceptionOnGetContents($url);
         $this->assertSame(500, $exception->getStatusCode());
+        $this->assertStringContainsString($url, $exception->getPrevious()?->getMessage() ?? '');
     }
 
     #[WithoutErrorHandler]
@@ -36,6 +37,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $url = 'https://httpbin.org/status/404';
         $exception = $this->catchExceptionOnGetContents($url);
         $this->assertSame(404, $exception->getStatusCode());
+        $this->assertStringContainsString($url, $exception->getPrevious()?->getMessage() ?? '');
     }
 
     #[WithoutErrorHandler]
@@ -44,5 +46,6 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $url = 'https://httpbin.org/status/504';
         $exception = $this->catchExceptionOnGetContents($url);
         $this->assertSame(504, $exception->getStatusCode());
+        $this->assertStringContainsString($url, $exception->getPrevious()?->getMessage() ?? '');
     }
 }
