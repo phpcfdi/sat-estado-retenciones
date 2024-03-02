@@ -10,9 +10,9 @@ use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader10;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader20;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReaderInterface;
 
-final class Service
+final readonly class Service
 {
-    private readonly ScraperInterface $scraper;
+    private ScraperInterface $scraper;
 
     public function __construct(ScraperInterface $scraper = null)
     {

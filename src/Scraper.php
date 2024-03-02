@@ -10,15 +10,12 @@ use PhpCfdi\SatEstadoRetenciones\HttpClients\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Internal\ResultConverter;
 use Symfony\Component\DomCrawler\Crawler;
 
-final class Scraper implements ScraperInterface
+final readonly class Scraper implements ScraperInterface
 {
     public const SAT_WEBAPP_URL = 'https://prodretencionverificacion.clouda.sat.gob.mx/Home/ConsultaRetencion';
 
-    private readonly HttpClientInterface $httpClient;
-
-    public function __construct(HttpClientInterface $httpClient = null)
+    public function __construct(private HttpClientInterface $httpClient = new PhpStreamContextHttpClient())
     {
-        $this->httpClient = $httpClient ?? new PhpStreamContextHttpClient();
     }
 
     public function getHttpClient(): HttpClientInterface

@@ -9,26 +9,26 @@ use PhpCfdi\SatEstadoRetenciones\ValueObjects\Amount;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 
-class Result implements JsonSerializable
+final readonly class Result implements JsonSerializable
 {
-    private readonly StatusDocument $statusDocument;
+    private StatusDocument $statusDocument;
 
-    private readonly Amount $totalAmount;
+    private Amount $totalAmount;
 
-    private readonly StatusEfos $statusEfos;
+    private StatusEfos $statusEfos;
 
     public function __construct(
-        private readonly string $issuerRfc,
-        private readonly string $issuerName,
-        private readonly string $receiverRfc,
-        private readonly string $receiverName,
-        private readonly string $uuid,
-        private readonly string $expedition,
-        private readonly string $certification,
-        private readonly string $pacRfc,
-        private readonly string $total,
-        private readonly string $state,
-        private readonly string $efos
+        private string $issuerRfc,
+        private string $issuerName,
+        private string $receiverRfc,
+        private string $receiverName,
+        private string $uuid,
+        private string $expedition,
+        private string $certification,
+        private string $pacRfc,
+        private string $total,
+        private string $state,
+        private string $efos
     ) {
         $this->statusDocument = StatusDocument::fromValue($this->state);
         $this->statusEfos = StatusEfos::fromValue($this->efos);

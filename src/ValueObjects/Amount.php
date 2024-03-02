@@ -6,9 +6,9 @@ namespace PhpCfdi\SatEstadoRetenciones\ValueObjects;
 
 use JsonSerializable;
 
-final class Amount implements JsonSerializable
+final readonly class Amount implements JsonSerializable
 {
-    public function __construct(private readonly float $value)
+    public function __construct(private float $value)
     {
     }
 

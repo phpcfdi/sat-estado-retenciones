@@ -7,7 +7,7 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Features;
 use PhpCfdi\SatEstadoRetenciones\Service;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
-class QueryWithRealCfdiTest extends TestCase
+final class QueryWithRealCfdiTest extends TestCase
 {
     public function testQueryWithRetentions10MexicanReal(): void
     {

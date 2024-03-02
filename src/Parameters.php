@@ -6,12 +6,12 @@ namespace PhpCfdi\SatEstadoRetenciones;
 
 use JsonSerializable;
 
-class Parameters implements JsonSerializable
+final readonly class Parameters implements JsonSerializable
 {
     public function __construct(
-        private readonly string $uuid,
-        private readonly string $issuerRfc,
-        private readonly string $receiverRfc,
+        private string $uuid,
+        private string $issuerRfc,
+        private string $receiverRfc,
     ) {
     }
 

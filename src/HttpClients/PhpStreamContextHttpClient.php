@@ -9,7 +9,7 @@ use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use Throwable;
 
-final class PhpStreamContextHttpClient implements HttpClientInterface
+final readonly class PhpStreamContextHttpClient implements HttpClientInterface
 {
     public function getContents(string $url): string
     {

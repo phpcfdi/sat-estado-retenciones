@@ -8,7 +8,7 @@ use PhpCfdi\SatEstadoRetenciones\Result;
 use Symfony\Component\DomCrawler\Crawler;
 
 /** @internal */
-class ResultConverter
+final readonly class ResultConverter
 {
     public function convertHtml(string $html): Result
     {
