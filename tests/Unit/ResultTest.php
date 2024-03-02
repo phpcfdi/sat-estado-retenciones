@@ -45,7 +45,7 @@ final class ResultTest extends TestCase
 
     /**
      * @param string $input
-     * @param \PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument $expected
+     * @param StatusDocument $expected
      * @dataProvider providerStatusDocument
      */
     public function testStatusDocument(string $input, StatusDocument $expected): void
