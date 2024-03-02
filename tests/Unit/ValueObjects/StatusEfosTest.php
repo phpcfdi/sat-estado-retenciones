@@ -6,6 +6,7 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
 
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
+use PHPUnit\Framework\Attributes\TestWith;
 
 final class StatusEfosTest extends TestCase
 {
@@ -25,11 +26,9 @@ final class StatusEfosTest extends TestCase
         $this->assertFalse($status->isUnknown());
     }
 
-    /**
-     * @testWith [""]
-     *           ["Otro valor"]
-     *           ["300"]
-     */
+    #[TestWith([''])]
+    #[TestWith(['Otro valor'])]
+    #[TestWith(['300'])]
     public function testCreateStatusEfosFromValueUnknown(string $value): void
     {
         $status = StatusEfos::fromValue($value);

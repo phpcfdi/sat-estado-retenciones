@@ -7,6 +7,7 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Features;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\HttpClients\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
+use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 
 final class DefaultHttpClientExceptionsTest extends TestCase
 {
@@ -21,6 +22,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $this->fail(sprintf('Exception %s was not thrown', HttpClientException::class));
     }
 
+    #[WithoutErrorHandler]
     public function testExceptionOnConnectionError(): void
     {
         $url = 'https://non-existent-host.localhost/';
@@ -28,6 +30,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $this->assertSame(500, $exception->getStatusCode());
     }
 
+    #[WithoutErrorHandler]
     public function testExceptionOnUnavailablePath(): void
     {
         $url = 'https://httpbin.org/status/404';
@@ -35,6 +38,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
         $this->assertSame(404, $exception->getStatusCode());
     }
 
+    #[WithoutErrorHandler]
     public function testExceptionOnServerError(): void
     {
         $url = 'https://httpbin.org/status/504';

@@ -9,6 +9,7 @@ use PhpCfdi\SatEstadoRetenciones\Result;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ResultTest extends TestCase
 {
@@ -33,7 +34,7 @@ final class ResultTest extends TestCase
     }
 
     /** @return array<string, array{string, StatusDocument}> */
-    public function providerStatusDocument(): array
+    public static function providerStatusDocument(): array
     {
         return [
             'active' => ['Vigente', StatusDocument::Active],
@@ -43,7 +44,7 @@ final class ResultTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerStatusDocument */
+    #[DataProvider('providerStatusDocument')]
     public function testStatusDocument(string $input, StatusDocument $expected): void
     {
         $result = new Result(
@@ -64,7 +65,7 @@ final class ResultTest extends TestCase
     }
 
     /** @return array<string, array{string, StatusEfos}> */
-    public function providerStatusEfos(): array
+    public static function providerStatusEfos(): array
     {
         return [
             'included' => ['100', StatusEfos::Included],
@@ -74,7 +75,7 @@ final class ResultTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerStatusEfos */
+    #[DataProvider('providerStatusEfos')]
     public function testStatusEfos(string $input, StatusEfos $expected): void
     {
         $result = new Result(

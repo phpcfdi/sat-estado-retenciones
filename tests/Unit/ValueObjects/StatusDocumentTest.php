@@ -6,6 +6,7 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
 
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
+use PHPUnit\Framework\Attributes\TestWith;
 
 final class StatusDocumentTest extends TestCase
 {
@@ -25,11 +26,9 @@ final class StatusDocumentTest extends TestCase
         $this->assertFalse($status->isUnknown());
     }
 
-    /**
-     * @testWith [""]
-     *           ["Otro valor"]
-     *           ["vigente"]
-     */
+    #[TestWith([''])]
+    #[TestWith(['Otro valor'])]
+    #[TestWith(['vigente'])]
     public function testCreateStatusDocumentFromValueNotFound(string $value): void
     {
         $status = StatusDocument::fromValue($value);
