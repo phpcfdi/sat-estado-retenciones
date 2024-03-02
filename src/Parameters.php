@@ -8,8 +8,11 @@ use JsonSerializable;
 
 class Parameters implements JsonSerializable
 {
-    public function __construct(private string $uuid, private string $issuerRfc, private string $receiverRfc)
-    {
+    public function __construct(
+        private readonly string $uuid,
+        private readonly string $issuerRfc,
+        private readonly string $receiverRfc,
+    ) {
     }
 
     public static function createEmpty(): self

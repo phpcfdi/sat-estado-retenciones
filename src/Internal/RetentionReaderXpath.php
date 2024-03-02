@@ -11,12 +11,12 @@ use DOMXPath;
 abstract class RetentionReaderXpath implements RetentionReaderInterface
 {
     public function __construct(
-        private DOMXPath $xpath,
-        private string $queryVersion,
-        private string $expectedVersion,
-        private string $queryUuid,
-        private string $queryRfcIssuer,
-        private string $queryRfcReceiver
+        private readonly DOMXPath $xpath,
+        private readonly string $queryVersion,
+        private readonly string $expectedVersion,
+        private readonly string $queryUuid,
+        private readonly string $queryRfcIssuer,
+        private readonly string $queryRfcReceiver
     ) {
     }
 

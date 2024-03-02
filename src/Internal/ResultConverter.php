@@ -43,7 +43,7 @@ class ResultConverter
             $values['Nombre o Razón Social del Emisor'] ?? '',
             $values['RFC del Receptor'] ?? '',
             $values['Nombre o Razón Social del Receptor'] ?? '',
-            $values['Folio Fiscal'] ?? '',
+            strtoupper($values['Folio Fiscal'] ?? ''),
             $values['Fecha de Expedición'] ?? '',
             $values['Fecha Certificación SAT'] ?? '',
             $values['PAC que Certificó'] ?? '',

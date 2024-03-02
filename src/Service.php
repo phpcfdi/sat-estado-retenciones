@@ -12,7 +12,7 @@ use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReaderInterface;
 
 final class Service
 {
-    private ScraperInterface $scraper;
+    private readonly ScraperInterface $scraper;
 
     public function __construct(ScraperInterface $scraper = null)
     {
