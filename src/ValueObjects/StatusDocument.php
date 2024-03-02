@@ -20,6 +20,15 @@ enum StatusDocument implements JsonSerializable
     case Cancelled;
     case Unknown;
 
+    public static function fromValue(string $value): self
+    {
+        return match ($value) {
+            'Vigente' => self::Active,
+            'Cancelado' => self::Cancelled,
+            default => self::Unknown,
+        };
+    }
+
     public function jsonSerialize(): string
     {
         return $this->name;

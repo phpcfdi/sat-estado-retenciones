@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
 use PhpCfdi\SatEstadoRetenciones\Result;
-use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
 /** @internal */
@@ -51,16 +50,5 @@ class ResultConverter
             $values['Estado CFDI Retención'] ?? '',
             $values['EFOS'] ?? '',
         );
-    }
-
-    public function createStatusDocumentFromValue(string $value): StatusDocument
-    {
-        if ('Vigente' === $value) {
-            return StatusDocument::Active;
-        }
-        if ('Cancelado' === $value) {
-            return StatusDocument::Cancelled;
-        }
-        return StatusDocument::Unknown;
     }
 }

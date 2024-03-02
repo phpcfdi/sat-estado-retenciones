@@ -30,31 +30,9 @@ class Result implements JsonSerializable
         private readonly string $state,
         private readonly string $efos
     ) {
-        $this->statusDocument = $this->makeStatusDocument($this->state);
-        $this->statusEfos = $this->makeStatusEfos($this->efos);
+        $this->statusDocument = StatusDocument::fromValue($this->state);
+        $this->statusEfos = StatusEfos::fromValue($this->efos);
         $this->totalAmount = Amount::newFromString($this->total);
-    }
-
-    private function makeStatusDocument(string $state): StatusDocument
-    {
-        if ('Vigente' === $state) {
-            return StatusDocument::Active;
-        }
-        if ('Cancelado' === $state) {
-            return StatusDocument::Cancelled;
-        }
-        return StatusDocument::Unknown;
-    }
-
-    private function makeStatusEfos(string $efos): StatusEfos
-    {
-        if ('100' === $efos) {
-            return StatusEfos::Included;
-        }
-        if ('200' === $efos) {
-            return StatusEfos::Excluded;
-        }
-        return StatusEfos::Unknown;
     }
 
     public function getStatusDocument(): StatusDocument

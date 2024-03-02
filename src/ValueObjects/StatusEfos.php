@@ -20,6 +20,15 @@ enum StatusEfos implements JsonSerializable
     case Excluded;
     case Unknown;
 
+    public static function fromValue(string $value): self
+    {
+        return match ($value) {
+            '100' => self::Included,
+            '200' => self::Excluded,
+            default => self::Unknown,
+        };
+    }
+
     public function jsonSerialize(): string
     {
         return $this->name;
