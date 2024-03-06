@@ -62,8 +62,8 @@ try {
     return;
 }
 
-if ($result->getStatusDocument()->isActive()) {
-    echo "El CFDI de retenciones {$result->getUUID()} de {$result->getReceiverName()} se encuentra ACTIVO.\n";
+if ($result->statusDocument->isActive()) {
+    echo "El CFDI de retenciones {$result->uuid} de {$result->receiverName} se encuentra ACTIVO.\n";
 }
 ```
 

@@ -32,7 +32,7 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper($fakeHttpClient);
         $result = $scraper->obtainStatus($parameters);
 
-        $this->assertTrue($result->getStatusDocument()->isActive());
+        $this->assertTrue($result->statusDocument->isActive());
     }
 
     public function testObtainStatusUsingFakeHttpClientNotFound(): void

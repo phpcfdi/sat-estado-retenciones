@@ -61,7 +61,7 @@ final class ResultTest extends TestCase
             '200'
         );
 
-        $this->assertSame($expected, $result->getStatusDocument());
+        $this->assertSame($expected, $result->statusDocument);
     }
 
     /** @return array<string, array{string, StatusEfos}> */
@@ -92,6 +92,6 @@ final class ResultTest extends TestCase
             $input
         );
 
-        $this->assertSame($expected, $result->getStatusEfos());
+        $this->assertSame($expected, $result->statusEfos);
     }
 }
