@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\ValueObjects;
 
 use JsonSerializable;
+use Stringable;
 
-final readonly class Amount implements JsonSerializable
+final readonly class Amount implements JsonSerializable, Stringable
 {
     public function __construct(private float $value)
     {
@@ -30,5 +31,10 @@ final readonly class Amount implements JsonSerializable
     public function format(int $decimals = 2): string
     {
         return number_format($this->value, $decimals, '.', ',');
+    }
+
+    public function __toString(): string
+    {
+        return $this->format();
     }
 }
