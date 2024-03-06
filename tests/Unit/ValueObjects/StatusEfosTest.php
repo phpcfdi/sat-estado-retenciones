@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
 
+use BadMethodCallException;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 use PHPUnit\Framework\Attributes\TestWith;
@@ -35,5 +36,11 @@ final class StatusEfosTest extends TestCase
         $this->assertFalse($status->isIncluded());
         $this->assertFalse($status->isExcluded());
         $this->assertTrue($status->isUnknown());
+    }
+
+    public function testStatusEfosCallInvalidMethod(): void
+    {
+        $this->expectException(BadMethodCallException::class);
+        StatusEfos::Excluded->{'invalidMethod'}();
     }
 }
