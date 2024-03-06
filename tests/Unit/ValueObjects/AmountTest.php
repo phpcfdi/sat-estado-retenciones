@@ -15,6 +15,7 @@ final class AmountTest extends TestCase
         $amount = Amount::newFromString($expression);
 
         $this->assertEqualsWithDelta(1_234.56, $amount->getValue(), 0.001);
+        $this->assertSame('1,234.560', $amount->format(3));
         $this->assertSame('1,234.56', $amount->format());
         $this->assertSame('1,234.56', strval($amount));
     }
