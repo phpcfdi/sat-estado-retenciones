@@ -31,7 +31,7 @@ final readonly class Scraper implements ScraperInterface
 
     public function responseIsNotFound(Crawler $crawler): bool
     {
-        return ($crawler->filter('.noresultados')->count() > 0);
+        return $crawler->filter('.noresultados')->count() > 0;
     }
 
     public function makeUrl(Parameters $parameters): string

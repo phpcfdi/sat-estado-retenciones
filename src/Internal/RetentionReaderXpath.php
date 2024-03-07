@@ -22,7 +22,7 @@ abstract class RetentionReaderXpath implements RetentionReaderInterface
 
     public function matchDocument(): bool
     {
-        return ($this->expectedVersion === $this->obtainFirstAttributeValue($this->queryVersion));
+        return $this->expectedVersion === $this->obtainFirstAttributeValue($this->queryVersion);
     }
 
     public function obtainUUID(): string
