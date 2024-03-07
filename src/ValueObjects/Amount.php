@@ -9,18 +9,13 @@ use Stringable;
 
 final readonly class Amount implements JsonSerializable, Stringable
 {
-    public function __construct(private float $value)
+    public function __construct(public float $value)
     {
     }
 
     public static function newFromString(string $expression): self
     {
         return new self(floatval(preg_replace('/[^\d.]/', '', $expression)));
-    }
-
-    public function getValue(): float
-    {
-        return $this->value;
     }
 
     public function jsonSerialize(): float
