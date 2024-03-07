@@ -14,13 +14,8 @@ final readonly class Scraper implements ScraperInterface
 {
     public const SAT_WEBAPP_URL = 'https://prodretencionverificacion.clouda.sat.gob.mx/Home/ConsultaRetencion';
 
-    public function __construct(private HttpClientInterface $httpClient = new PhpStreamContextHttpClient())
+    public function __construct(public HttpClientInterface $httpClient = new PhpStreamContextHttpClient())
     {
-    }
-
-    public function getHttpClient(): HttpClientInterface
-    {
-        return $this->httpClient;
     }
 
     public function obtainStatus(Parameters $parameters): Result
