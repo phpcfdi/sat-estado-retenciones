@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
 
 use BadMethodCallException;
-use PHPUnit\Framework\Attributes\TestWith;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
+use PHPUnit\Framework\Attributes\TestWith;
 
 final class StatusDocumentTest extends TestCase
 {
