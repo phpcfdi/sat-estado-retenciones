@@ -151,6 +151,8 @@ sin temor a romper tu aplicación.
 | 1.1.0                    | 7.3, 7.4, 8.0, 8.1, 8.2, 8.3 |
 | 2.0.0                    | 8.2, 8.3                     |
 
+- [Guía de actualización de la versión 1.x a 2.x](docs/UPGRADE_v1_v2.md).
+
 ## Contribuciones
 
 Las contribuciones con bienvenidas. Por favor lee [CONTRIBUTING][] para más detalles
