@@ -19,14 +19,14 @@ final class ServiceTest extends TestCase
     public function testConstructHasDefaultScraper(): void
     {
         $service = new Service();
-        $this->assertInstanceOf(Scraper::class, $service->getScraper());
+        $this->assertInstanceOf(Scraper::class, $service->scraper);
     }
 
     public function testConstructWithScraper(): void
     {
         $scraper = $this->createMock(ScraperInterface::class);
         $service = new Service($scraper);
-        $this->assertSame($scraper, $service->getScraper());
+        $this->assertSame($scraper, $service->scraper);
     }
 
     public function testQueryReturnsResult(): void
