@@ -55,15 +55,15 @@ $parameters = $service->makeParametersFromXml($contents);
 try {
     $result = $service->query($parameters);
 } catch (RetentionNotFoundException $exception) {
-    echo "El CFDI de retenciones {$exception->getParameters()->getUuid()} no fue encontrado.\n";
+    echo "El CFDI de retenciones {$exception->getParameters()->uuid} no fue encontrado.\n";
     return;
 } catch (HttpClientException $exception) {
     echo "No se pudo conectar al servicio en la URL {$exception->getUrl()}.\n";
     return;
 }
 
-if ($result->getStatusDocument()->isActive()) {
-    echo "El CFDI de retenciones {$result->getUUID()} de {$result->getReceiverName()} se encuentra ACTIVO.\n";
+if ($result->statusDocument->isActive()) {
+    echo "El CFDI de retenciones {$result->uuid} de {$result->receiverName} se encuentra ACTIVO.\n";
 }
 ```
 
@@ -146,6 +146,13 @@ Esta librería se mantendrá compatible con al menos la versión con
 También utilizamos [Versionado Semántico 2.0.0](docs/SEMVER.md) por lo que puedes usar esta librería
 sin temor a romper tu aplicación.
 
+| `sat-estado-retenciones` | Versiones soportadas de PHP  |
+|--------------------------|------------------------------|
+| 1.1.0                    | 7.3, 7.4, 8.0, 8.1, 8.2, 8.3 |
+| 2.0.0                    | 8.2, 8.3                     |
+
+- [Guía de actualización de la versión 1.x a 2.x](docs/UPGRADE_v1_v2.md).
+
 ## Contribuciones
 
 Las contribuciones con bienvenidas. Por favor lee [CONTRIBUTING][] para más detalles
@@ -177,7 +184,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [badge-php-version]: https://img.shields.io/packagist/php-v/phpcfdi/sat-estado-retenciones?logo=php
 [badge-release]: https://img.shields.io/github/release/phpcfdi/sat-estado-retenciones?logo=git
 [badge-license]: https://img.shields.io/github/license/phpcfdi/sat-estado-retenciones?logo=open-source-initiative
-[badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/sat-estado-retenciones/build/main?logo=github-actions
+[badge-build]: https://img.shields.io/github/actions/workflow/status/phpcfdi/sat-estado-retenciones/build.yml?branch=main&logo=github-actions
 [badge-reliability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_sat-estado-retenciones&metric=reliability_rating
 [badge-maintainability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_sat-estado-retenciones&metric=sqale_rating
 [badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_sat-estado-retenciones/main?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io

@@ -10,25 +10,15 @@ use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader10;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader20;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReaderInterface;
 
-final class Service
+final readonly class Service
 {
-    private ScraperInterface $scraper;
-
-    public function __construct(ScraperInterface $scraper = null)
+    public function __construct(public ScraperInterface $scraper = new Scraper())
     {
-        $this->scraper = $scraper ?? new Scraper();
-    }
-
-    public function getScraper(): ScraperInterface
-    {
-        return $this->scraper;
     }
 
     /**
      * Query parameters and obtain the result
      *
-     * @param Parameters $parameters
-     * @return Result
      * @throws Exceptions\RetentionNotFoundException if retention document was not found
      * @throws Exceptions\HttpClientException if unable to retrieve contents because HTTP error
      */
@@ -40,24 +30,19 @@ final class Service
     /**
      * Query parameters and obtain the result, if not found returns NULL
      *
-     * @param Parameters $parameters
-     * @return Result|null
      * @throws Exceptions\HttpClientException if unable to retrieve contents because HTTP error
      */
-    public function queryOrNull(Parameters $parameters): ?Result
+    public function queryOrNull(Parameters $parameters): Result|null
     {
         try {
             return $this->scraper->obtainStatus($parameters);
-        } catch (Exceptions\RetentionNotFoundException $exception) {
+        } catch (Exceptions\RetentionNotFoundException) {
             return null;
         }
     }
 
     /**
      * Makes a parameters object for the given XML
-     *
-     * @param string $xml
-     * @return Parameters
      */
     public function makeParametersFromXml(string $xml): Parameters
     {
@@ -68,9 +53,6 @@ final class Service
 
     /**
      * Makes a parameters object for the given DOM Document
-     *
-     * @param DOMDocument $document
-     * @return Parameters
      */
     public function makeParametersFromDocument(DOMDocument $document): Parameters
     {

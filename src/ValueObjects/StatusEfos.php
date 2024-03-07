@@ -4,22 +4,33 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\ValueObjects;
 
-use Eclipxe\Enum\Enum;
 use JsonSerializable;
+use PhpCfdi\SatEstadoRetenciones\Internal\EnumIsTypeTrait;
 
 /**
- * @method static self included()
- * @method static self excluded()
- * @method static self unknown()
- *
  * @method bool isIncluded()
  * @method bool isExcluded()
  * @method bool isUnknown()
  */
-final class StatusEfos extends Enum implements JsonSerializable
+enum StatusEfos implements JsonSerializable
 {
+    use EnumIsTypeTrait;
+
+    case Included;
+    case Excluded;
+    case Unknown;
+
+    public static function fromValue(string $value): self
+    {
+        return match ($value) {
+            '100' => self::Included,
+            '200' => self::Excluded,
+            default => self::Unknown,
+        };
+    }
+
     public function jsonSerialize(): string
     {
-        return $this->value();
+        return $this->name;
     }
 }

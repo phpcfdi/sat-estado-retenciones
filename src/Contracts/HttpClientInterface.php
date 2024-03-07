@@ -11,8 +11,6 @@ interface HttpClientInterface
     /**
      * Execute a GET to the url and return the content
      *
-     * @param string $url
-     * @return string
      * @throws HttpClientException when unable to retrieve contents
      */
     public function getContents(string $url): string;

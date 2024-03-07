@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
 use PhpCfdi\SatEstadoRetenciones\Result;
-use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
 /** @internal */
-class ResultConverter
+final readonly class ResultConverter
 {
     public function convertHtml(string $html): Result
     {
@@ -43,7 +42,7 @@ class ResultConverter
             $values['Nombre o Razón Social del Emisor'] ?? '',
             $values['RFC del Receptor'] ?? '',
             $values['Nombre o Razón Social del Receptor'] ?? '',
-            $values['Folio Fiscal'] ?? '',
+            strtoupper($values['Folio Fiscal'] ?? ''),
             $values['Fecha de Expedición'] ?? '',
             $values['Fecha Certificación SAT'] ?? '',
             $values['PAC que Certificó'] ?? '',
@@ -51,16 +50,5 @@ class ResultConverter
             $values['Estado CFDI Retención'] ?? '',
             $values['EFOS'] ?? '',
         );
-    }
-
-    public function createStatusDocumentFromValue(string $value): StatusDocument
-    {
-        if ('Vigente' === $value) {
-            return StatusDocument::active();
-        }
-        if ('Cancelado' === $value) {
-            return StatusDocument::cancelled();
-        }
-        return StatusDocument::unknown();
     }
 }

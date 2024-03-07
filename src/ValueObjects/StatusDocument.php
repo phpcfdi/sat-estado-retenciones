@@ -4,22 +4,33 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\ValueObjects;
 
-use Eclipxe\Enum\Enum;
 use JsonSerializable;
+use PhpCfdi\SatEstadoRetenciones\Internal\EnumIsTypeTrait;
 
 /**
- * @method static self active()
- * @method static self cancelled()
- * @method static self unknown()
- *
  * @method bool isActive()
  * @method bool isCancelled()
  * @method bool isUnknown()
  */
-class StatusDocument extends Enum implements JsonSerializable
+enum StatusDocument implements JsonSerializable
 {
+    use EnumIsTypeTrait;
+
+    case Active;
+    case Cancelled;
+    case Unknown;
+
+    public static function fromValue(string $value): self
+    {
+        return match ($value) {
+            'Vigente' => self::Active,
+            'Cancelado' => self::Cancelled,
+            default => self::Unknown,
+        };
+    }
+
     public function jsonSerialize(): string
     {
-        return $this->value();
+        return $this->name;
     }
 }

@@ -4,6 +4,20 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
+## Versión 2.0.0
+
+Si ya habías implementado la versión 1.x, consula la [Guía de actualización de la versión 1.x a 2.x](UPGRADE_v1_v2.md).
+Si es una implementación nueva, solamente sigue la documentación del proyecto.
+
+Cambios más relevantes:
+
+- La versión mínima es ahora PHP 8.2, se agrega PHP 8.3 a la matriz de pruebas.
+- Se dejan de utilizar *getters* a favor de propiedades públicas de solo lectura, excepto en *Excepciones*.
+- Los enumeradores cambian de `eclipxe/enum` a tipos de PHP.
+- Se actualiza el año en el archivo de licencia. Feliz 2024.
+- Se actualiza el flujo de trabajo para ejecutar los trabajos en PHP 8.3.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 1.1.0
 
 - Se agrega el soporte para validar retenciones 2.0.

@@ -32,7 +32,7 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper($fakeHttpClient);
         $result = $scraper->obtainStatus($parameters);
 
-        $this->assertTrue($result->getStatusDocument()->isActive());
+        $this->assertTrue($result->statusDocument->isActive());
     }
 
     public function testObtainStatusUsingFakeHttpClientNotFound(): void
@@ -80,14 +80,14 @@ final class ScraperTest extends TestCase
     public function testPropertyDefaultHttpClientInterface(): void
     {
         $scraper = new Scraper();
-        $this->assertInstanceOf(PhpStreamContextHttpClient::class, $scraper->getHttpClient());
+        $this->assertInstanceOf(PhpStreamContextHttpClient::class, $scraper->httpClient);
     }
 
     public function testPropertyHttpClientInterface(): void
     {
         $httpClient = $this->createMock(HttpClientInterface::class);
         $scraper = new Scraper($httpClient);
-        $this->assertSame($httpClient, $scraper->getHttpClient());
+        $this->assertSame($httpClient, $scraper->httpClient);
     }
 
     public function testMakeUrlHasValuesOnQueryString(): void

@@ -9,7 +9,7 @@ use PhpCfdi\SatEstadoRetenciones\Parameters;
 use PhpCfdi\SatEstadoRetenciones\Service;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
-class QueryWithNonExistentCfdiTest extends TestCase
+final class QueryWithNonExistentCfdiTest extends TestCase
 {
     public function testQueryWithNonExistentCfdi(): void
     {

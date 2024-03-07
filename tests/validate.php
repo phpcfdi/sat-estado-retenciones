@@ -32,7 +32,7 @@ exit((function () use ($argv): int {
 
         $parameters = $service->makeParametersFromXml($contents);
         echo json_encode(['Parameters' => $parameters], JSON_PRETTY_PRINT), PHP_EOL;
-        if ('' === $parameters->getUuid()) {
+        if ('' === $parameters->uuid) {
             throw new Exception('The retention file does not have an UUID');
         }
 

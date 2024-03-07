@@ -10,18 +10,17 @@ use Throwable;
 
 final class RetentionNotFoundException extends RuntimeException implements SatEstadoRetencionesException
 {
-    private Parameters $parameters;
-
-    public function __construct(Parameters $parameters, Throwable $previous = null)
-    {
+    public function __construct(
+        private readonly Parameters $parameters,
+        Throwable $previous = null,
+    ) {
         $message = sprintf(
             'CFDI Retention %s (issuer: %s, receiver: %s) was not found',
-            $parameters->getUuid(),
-            $parameters->getIssuerRfc(),
-            $parameters->getReceiverRfc() ?: '<empty>',
+            $parameters->uuid,
+            $parameters->issuerRfc,
+            $parameters->receiverRfc ?: '<empty>',
         );
         parent::__construct($message, 0, $previous);
-        $this->parameters = $parameters;
     }
 
     public function getParameters(): Parameters

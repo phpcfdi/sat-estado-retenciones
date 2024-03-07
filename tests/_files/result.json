@@ -1,5 +1,5 @@
 {
-    "statusDocument": "active",
+    "statusDocument": "Active",
     "issuerRfc": "DCM991109KR2",
     "issuerName": "DEREMATE.COM DE MEXICO S DE RL DE CV",
     "receiverRfc": "SAZD861013FU2",
@@ -12,5 +12,5 @@
     "totalAmount": 431.03,
     "state": "Vigente",
     "efos": "200",
-    "statusEfos": "excluded"
+    "statusEfos": "Excluded"
 }

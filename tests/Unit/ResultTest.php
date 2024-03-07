@@ -9,6 +9,7 @@ use PhpCfdi\SatEstadoRetenciones\Result;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ResultTest extends TestCase
 {
@@ -32,22 +33,18 @@ final class ResultTest extends TestCase
         $this->assertJsonStringEqualsJsonFile($this->filePath('result.json'), json_encode($result) ?: '');
     }
 
-    /** @return array<string, mixed[]> */
-    public function providerStatusDocument(): array
+    /** @return array<string, array{string, StatusDocument}> */
+    public static function providerStatusDocument(): array
     {
         return [
-            'active' => ['Vigente', StatusDocument::active()],
-            'cancelled' => ['Cancelado', StatusDocument::cancelled()],
-            'empty' => ['', StatusDocument::unknown()],
-            'other text' => ['Foo bar', StatusDocument::unknown()],
+            'active' => ['Vigente', StatusDocument::Active],
+            'cancelled' => ['Cancelado', StatusDocument::Cancelled],
+            'empty' => ['', StatusDocument::Unknown],
+            'other text' => ['Foo bar', StatusDocument::Unknown],
         ];
     }
 
-    /**
-     * @param string $input
-     * @param \PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument $expected
-     * @dataProvider providerStatusDocument
-     */
+    #[DataProvider('providerStatusDocument')]
     public function testStatusDocument(string $input, StatusDocument $expected): void
     {
         $result = new Result(
@@ -64,25 +61,21 @@ final class ResultTest extends TestCase
             '200'
         );
 
-        $this->assertEquals($expected, $result->getStatusDocument());
+        $this->assertSame($expected, $result->statusDocument);
     }
 
-    /** @return array<string, mixed[]> */
-    public function providerStatusEfos(): array
+    /** @return array<string, array{string, StatusEfos}> */
+    public static function providerStatusEfos(): array
     {
         return [
-            'included' => ['100', StatusEfos::included()],
-            'excluded' => ['200', StatusEfos::excluded()],
-            'empty' => ['', StatusEfos::unknown()],
-            'other text' => ['Foo bar', StatusEfos::unknown()],
+            'included' => ['100', StatusEfos::Included],
+            'excluded' => ['200', StatusEfos::Excluded],
+            'empty' => ['', StatusEfos::Unknown],
+            'other text' => ['Foo bar', StatusEfos::Unknown],
         ];
     }
 
-    /**
-     * @param string $input
-     * @param StatusEfos $expected
-     * @dataProvider providerStatusEfos
-     */
+    #[DataProvider('providerStatusEfos')]
     public function testStatusEfos(string $input, StatusEfos $expected): void
     {
         $result = new Result(
@@ -99,6 +92,6 @@ final class ResultTest extends TestCase
             $input
         );
 
-        $this->assertEquals($expected, $result->getStatusEfos());
+        $this->assertSame($expected, $result->statusEfos);
     }
 }
