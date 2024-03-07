@@ -42,9 +42,9 @@ final readonly class Scraper implements ScraperInterface
     public function makeUrl(Parameters $parameters): string
     {
         return self::SAT_WEBAPP_URL . '?' . http_build_query([
-            'folio' => $parameters->getUuid(),
-            'rfcEmisor' => $parameters->getIssuerRfc(),
-            'rfcReceptor' => $parameters->getReceiverRfc(),
+            'folio' => $parameters->uuid,
+            'rfcEmisor' => $parameters->issuerRfc,
+            'rfcReceptor' => $parameters->receiverRfc,
             '_' => $this->obtainMillisecondsParameter(),
         ]);
     }

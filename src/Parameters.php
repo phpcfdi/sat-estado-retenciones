@@ -9,30 +9,15 @@ use JsonSerializable;
 final readonly class Parameters implements JsonSerializable
 {
     public function __construct(
-        private string $uuid,
-        private string $issuerRfc,
-        private string $receiverRfc,
+        public string $uuid,
+        public string $issuerRfc,
+        public string $receiverRfc,
     ) {
     }
 
     public static function createEmpty(): self
     {
         return new self('', '', '');
-    }
-
-    public function getUuid(): string
-    {
-        return $this->uuid;
-    }
-
-    public function getIssuerRfc(): string
-    {
-        return $this->issuerRfc;
-    }
-
-    public function getReceiverRfc(): string
-    {
-        return $this->receiverRfc;
     }
 
     /** @return array<string, mixed> */

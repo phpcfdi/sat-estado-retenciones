@@ -16,9 +16,9 @@ final class RetentionNotFoundException extends RuntimeException implements SatEs
     ) {
         $message = sprintf(
             'CFDI Retention %s (issuer: %s, receiver: %s) was not found',
-            $parameters->getUuid(),
-            $parameters->getIssuerRfc(),
-            $parameters->getReceiverRfc() ?: '<empty>',
+            $parameters->uuid,
+            $parameters->issuerRfc,
+            $parameters->receiverRfc ?: '<empty>',
         );
         parent::__construct($message, 0, $previous);
     }

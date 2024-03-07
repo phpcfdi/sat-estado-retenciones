@@ -55,7 +55,7 @@ $parameters = $service->makeParametersFromXml($contents);
 try {
     $result = $service->query($parameters);
 } catch (RetentionNotFoundException $exception) {
-    echo "El CFDI de retenciones {$exception->getParameters()->getUuid()} no fue encontrado.\n";
+    echo "El CFDI de retenciones {$exception->getParameters()->uuid} no fue encontrado.\n";
     return;
 } catch (HttpClientException $exception) {
     echo "No se pudo conectar al servicio en la URL {$exception->getUrl()}.\n";

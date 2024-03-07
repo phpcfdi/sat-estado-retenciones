@@ -63,9 +63,9 @@ final class ServiceTest extends TestCase
         $document = new DOMDocument();
         $document->load($this->filePath('ret10-mexican-real.xml'));
         $parameters = $service->makeParametersFromDocument($document);
-        $this->assertSame('48C4CE37-E218-4AAE-97BE-20634A36C628', $parameters->getUuid());
-        $this->assertSame('DCM991109KR2', $parameters->getIssuerRfc());
-        $this->assertSame('SAZD861013FU2', $parameters->getReceiverRfc());
+        $this->assertSame('48C4CE37-E218-4AAE-97BE-20634A36C628', $parameters->uuid);
+        $this->assertSame('DCM991109KR2', $parameters->issuerRfc);
+        $this->assertSame('SAZD861013FU2', $parameters->receiverRfc);
     }
 
     public function testMakeParametersFromDocumentWithNonMatchingXml(): void
@@ -74,17 +74,17 @@ final class ServiceTest extends TestCase
         $document = new DOMDocument();
         $document->loadXML('<xml />');
         $parameters = $service->makeParametersFromDocument($document);
-        $this->assertSame('', $parameters->getUuid());
-        $this->assertSame('', $parameters->getIssuerRfc());
-        $this->assertSame('', $parameters->getReceiverRfc());
+        $this->assertSame('', $parameters->uuid);
+        $this->assertSame('', $parameters->issuerRfc);
+        $this->assertSame('', $parameters->receiverRfc);
     }
 
     public function testMakeParametersFromContents(): void
     {
         $service = new Service();
         $parameters = $service->makeParametersFromXml($this->fileContents('ret10-mexican-real.xml'));
-        $this->assertSame('48C4CE37-E218-4AAE-97BE-20634A36C628', $parameters->getUuid());
-        $this->assertSame('DCM991109KR2', $parameters->getIssuerRfc());
-        $this->assertSame('SAZD861013FU2', $parameters->getReceiverRfc());
+        $this->assertSame('48C4CE37-E218-4AAE-97BE-20634A36C628', $parameters->uuid);
+        $this->assertSame('DCM991109KR2', $parameters->issuerRfc);
+        $this->assertSame('SAZD861013FU2', $parameters->receiverRfc);
     }
 }

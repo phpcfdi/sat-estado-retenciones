@@ -17,9 +17,9 @@ final class QueryWithRealCfdiTest extends TestCase
         $result = $service->query($parameters);
 
         $this->assertTrue($result->statusDocument->isActive());
-        $this->assertSame($parameters->getIssuerRfc(), $result->issuerRfc);
-        $this->assertSame($parameters->getReceiverRfc(), $result->receiverRfc);
-        $this->assertSame($parameters->getUuid(), $result->uuid);
+        $this->assertSame($parameters->issuerRfc, $result->issuerRfc);
+        $this->assertSame($parameters->receiverRfc, $result->receiverRfc);
+        $this->assertSame($parameters->uuid, $result->uuid);
     }
 
     public function testQueryWithRetentions20MexicanReal(): void
@@ -30,8 +30,8 @@ final class QueryWithRealCfdiTest extends TestCase
         $result = $service->query($parameters);
 
         $this->assertTrue($result->statusDocument->isActive());
-        $this->assertSame($parameters->getIssuerRfc(), $result->issuerRfc);
-        $this->assertSame($parameters->getReceiverRfc(), $result->receiverRfc);
-        $this->assertSame($parameters->getUuid(), $result->uuid);
+        $this->assertSame($parameters->issuerRfc, $result->issuerRfc);
+        $this->assertSame($parameters->receiverRfc, $result->receiverRfc);
+        $this->assertSame($parameters->uuid, $result->uuid);
     }
 }
