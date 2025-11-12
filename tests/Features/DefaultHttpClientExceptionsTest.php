@@ -34,7 +34,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
     #[WithoutErrorHandler]
     public function testExceptionOnUnavailablePath(): void
     {
-        $url = 'https://httpbin.org/status/404';
+        $url = 'https://free.mockerapi.com/status/404';
         $exception = $this->catchExceptionOnGetContents($url);
         $this->assertSame(404, $exception->getStatusCode());
         $this->assertStringContainsString($url, $exception->getPrevious()?->getMessage() ?? '');
@@ -43,7 +43,7 @@ final class DefaultHttpClientExceptionsTest extends TestCase
     #[WithoutErrorHandler]
     public function testExceptionOnServerError(): void
     {
-        $url = 'https://httpbin.org/status/504';
+        $url = 'https://free.mockerapi.com/status/504';
         $exception = $this->catchExceptionOnGetContents($url);
         $this->assertSame(504, $exception->getStatusCode());
         $this->assertStringContainsString($url, $exception->getPrevious()?->getMessage() ?? '');
