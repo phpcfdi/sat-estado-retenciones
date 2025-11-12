@@ -16,7 +16,7 @@ abstract class RetentionReaderXpath implements RetentionReaderInterface
         private readonly string $expectedVersion,
         private readonly string $queryUuid,
         private readonly string $queryRfcIssuer,
-        private readonly string $queryRfcReceiver
+        private readonly string $queryRfcReceiver,
     ) {
     }
 

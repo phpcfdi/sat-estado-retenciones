@@ -26,7 +26,7 @@ final class ResultTest extends TestCase
             'TLE011122SC2',
             '$431.03',
             'Vigente',
-            '200'
+            '200',
         );
 
         $this->assertInstanceOf(JsonSerializable::class, $result);
@@ -58,7 +58,7 @@ final class ResultTest extends TestCase
             'TLE011122SC2',
             '$431.03',
             $input,
-            '200'
+            '200',
         );
 
         $this->assertSame($expected, $result->statusDocument);
@@ -89,7 +89,7 @@ final class ResultTest extends TestCase
             'TLE011122SC2',
             '$431.03',
             'Vigente',
-            $input
+            $input,
         );
 
         $this->assertSame($expected, $result->statusEfos);

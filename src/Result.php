@@ -28,7 +28,7 @@ final readonly class Result implements JsonSerializable
         public string $pacRfc,
         public string $total,
         public string $state,
-        public string $efos
+        public string $efos,
     ) {
         $this->statusDocument = StatusDocument::fromValue($this->state);
         $this->statusEfos = StatusEfos::fromValue($this->efos);

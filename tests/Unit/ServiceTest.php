@@ -34,7 +34,7 @@ final class ServiceTest extends TestCase
         $parameters = new Parameters('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');
         $result = (new ResultConverter())->createResultFromValues([]);
 
-        /** @var \PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface&MockObject $scraper */
+        /** @var ScraperInterface&MockObject $scraper */
         $scraper = $this->createMock(ScraperInterface::class);
         $scraper->expects($this->once())->method('obtainStatus')->willReturn($result);
 

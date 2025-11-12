@@ -20,7 +20,7 @@ final class RetentionNotFoundException extends RuntimeException implements SatEs
             $parameters->issuerRfc,
             $parameters->receiverRfc ?: '<empty>',
         );
-        parent::__construct($message, 0, $previous);
+        parent::__construct($message, previous: $previous);
     }
 
     public function getParameters(): Parameters
