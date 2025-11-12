@@ -4,12 +4,7 @@
     cacheDirectory="build/phpunit"
     bootstrap="tests/bootstrap.php"
     colors="true"
-    displayDetailsOnIncompleteTests="true"
-    displayDetailsOnSkippedTests="true"
-    displayDetailsOnTestsThatTriggerDeprecations="true"
-    displayDetailsOnTestsThatTriggerNotices="true"
-    displayDetailsOnTestsThatTriggerWarnings="true"
-    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnAllIssues="true"
     >
     <testsuites>
         <testsuite name="default">
