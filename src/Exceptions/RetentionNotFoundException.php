@@ -12,7 +12,7 @@ final class RetentionNotFoundException extends RuntimeException implements SatEs
 {
     public function __construct(
         private readonly Parameters $parameters,
-        Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         $message = sprintf(
             'CFDI Retention %s (issuer: %s, receiver: %s) was not found',
