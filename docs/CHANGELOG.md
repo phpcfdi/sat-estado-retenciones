@@ -4,6 +4,30 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
+## Versión 2.1.0
+
+Esta versión principalmente arregla el soporte de PHP 8.4.
+
+Adicionalmente:
+
+- Se actualiza el año de la licencia a 2025.
+- Se corrigen las insignias de SonarQube Cloud.
+
+Cambios al entorno de desarrollo:
+
+- Se corrige la integración con SonarQube Cloud.
+- Se cambia de `httpbin.org` a `ree.mockerapi.com` debido a problemas de disponibilidad del servicio.
+- Se actualiza el estándar de código.
+- Se agrega la herramienta `composer-normalize`.
+- En los flujos de trabajo de GitHub:
+  - Se agrega PHP 8.4 a la matriz de pruebas.
+  - Se ejecutan los trabajos en PHP 8.4.
+  - Se agrega el trabajo `composer-normalize`.
+  - Se agrega explícitamente la extensión SOAP cuando se instalan paquetes.
+  - Se cambia el nombre de variable `matrix.php-version` a singular.
+- Se mejora la configuración de PHPUnit para mostrar todos los problemas encontrados.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 2.0.0
 
 Si ya habías implementado la versión 1.x, consula la [Guía de actualización de la versión 1.x a 2.x](UPGRADE_v1_v2.md).
