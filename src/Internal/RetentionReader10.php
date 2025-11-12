@@ -22,7 +22,7 @@ final class RetentionReader10 extends RetentionReaderXpath
             '1.0',
             '/r:Retenciones/r:Complemento/t:TimbreFiscalDigital/@UUID',
             '/r:Retenciones/r:Emisor/@RFCEmisor',
-            '/r:Retenciones/r:Receptor/r:Nacional/@RFCRecep'
+            '/r:Retenciones/r:Receptor/r:Nacional/@RFCRecep',
         );
     }
 }

@@ -44,7 +44,7 @@ final readonly class Scraper implements ScraperInterface
         ]);
     }
 
-    public function obtainMillisecondsParameter(float $microtime = null): int
+    public function obtainMillisecondsParameter(?float $microtime = null): int
     {
         $microtime ??= microtime(true);
         return intval($microtime * 1000);

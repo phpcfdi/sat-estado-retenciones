@@ -13,9 +13,9 @@ final class HttpClientException extends RuntimeException implements SatEstadoRet
         private readonly string $url,
         private readonly int $statusCode,
         private readonly string $body,
-        Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
-        parent::__construct(sprintf('Unable to connect to %s, status code %d', $url, $statusCode), 0, $previous);
+        parent::__construct(sprintf('Unable to connect to %s, status code %d', $url, $statusCode), previous: $previous);
     }
 
     public function getUrl(): string

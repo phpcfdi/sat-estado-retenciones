@@ -41,6 +41,6 @@ final class StatusEfosTest extends TestCase
     public function testStatusEfosCallInvalidMethod(): void
     {
         $this->expectException(BadMethodCallException::class);
-        StatusEfos::Excluded->{'invalidMethod'}();
+        StatusEfos::Excluded->{'invalidMethod'}(); /** @phpstan-ignore-line method.notFound */
     }
 }

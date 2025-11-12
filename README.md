@@ -150,6 +150,7 @@ sin temor a romper tu aplicación.
 |--------------------------|------------------------------|
 | 1.1.0                    | 7.3, 7.4, 8.0, 8.1, 8.2, 8.3 |
 | 2.0.0                    | 8.2, 8.3                     |
+| 2.1.0                    | 8.2, 8.3, 8.4                |
 
 - [Guía de actualización de la versión 1.x a 2.x](docs/UPGRADE_v1_v2.md).
 
@@ -187,6 +188,6 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [badge-build]: https://img.shields.io/github/actions/workflow/status/phpcfdi/sat-estado-retenciones/build.yml?branch=main&logo=github-actions
 [badge-reliability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_sat-estado-retenciones&metric=reliability_rating
 [badge-maintainability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_sat-estado-retenciones&metric=sqale_rating
-[badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_sat-estado-retenciones/main?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
-[badge-violations]: https://img.shields.io/sonar/violations/phpcfdi_sat-estado-retenciones/main?format=long&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_sat-estado-retenciones/main?logo=sonarqubecloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-violations]: https://img.shields.io/sonar/violations/phpcfdi_sat-estado-retenciones/main?format=long&logo=sonarqubecloud&server=https%3A%2F%2Fsonarcloud.io
 [badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/sat-estado-retenciones?logo=packagist

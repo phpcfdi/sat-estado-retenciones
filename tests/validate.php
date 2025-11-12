@@ -12,7 +12,7 @@ exit((function () use ($argv): int {
     try {
         $filename = $argv[1] ?? '';
         if (in_array($filename, ['', '-h', '--help'])) {
-            $command = basename($argv[0] ?? '');
+            $command = basename($argv[0]);
             echo implode(PHP_EOL, [
                 'Script to validate a CFDI retentions',
                 '',

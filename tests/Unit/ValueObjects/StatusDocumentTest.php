@@ -41,6 +41,6 @@ final class StatusDocumentTest extends TestCase
     public function testStatusDocumentCallInvalidMethod(): void
     {
         $this->expectException(BadMethodCallException::class);
-        StatusDocument::Active->{'invalidMethod'}();
+        StatusDocument::Active->{'invalidMethod'}(); /** @phpstan-ignore-line method.notFound */
     }
 }

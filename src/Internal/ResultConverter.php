@@ -18,11 +18,13 @@ final readonly class ResultConverter
 
     public function convertCrawler(Crawler $crawler): Result
     {
+        /** @phpstan-var string[] $labels */
         $labels = $crawler->filter('#tbl_resultado th')->each(
-            fn (Crawler $th): string => $th->text()
+            fn (Crawler $th): string => $th->text(),
         );
+        /** @phpstan-var string[] $values */
         $values = $crawler->filter('#tbl_resultado td')->each(
-            fn (Crawler $td): string => $td->text()
+            fn (Crawler $td): string => $td->text(),
         );
 
         $dataValues = array_combine($labels, $values) ?: [];
