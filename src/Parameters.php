@@ -20,9 +20,13 @@ final readonly class Parameters implements JsonSerializable
         return new self('', '', '');
     }
 
-    /** @return array<string, mixed> */
+    /** @return array{uuid: string, issuerRfc: string, receiverRfc: string} */
     public function jsonSerialize(): array
     {
-        return get_object_vars($this);
+        return [
+            'uuid' => $this->uuid,
+            'issuerRfc' => $this->issuerRfc,
+            'receiverRfc' => $this->receiverRfc,
+        ];
     }
 }
