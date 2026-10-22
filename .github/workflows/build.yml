@@ -74,7 +74,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.5'
-          extensions: soap
           coverage: none
           tools: composer:v2, phpstan
         env:
@@ -106,7 +105,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: soap
           coverage: none
           tools: composer:v2
         env:
