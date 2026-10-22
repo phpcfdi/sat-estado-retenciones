@@ -35,9 +35,41 @@ final readonly class Result implements JsonSerializable
         $this->totalAmount = Amount::newFromString($this->total);
     }
 
-    /** @return array<string, mixed> */
+    /**
+     * @return array{
+     *     issuerRfc: string,
+     *     issuerName: string,
+     *     receiverRfc: string,
+     *     receiverName: string,
+     *     uuid: string,
+     *     expedition: string,
+     *     certification: string,
+     *     pacRfc: string,
+     *     total: string,
+     *     state: string,
+     *     efos: string,
+     *     statusDocument: StatusDocument,
+     *     statusEfos: StatusEfos,
+     *     totalAmount: Amount,
+     *  }
+     */
     public function jsonSerialize(): array
     {
-        return get_object_vars($this);
+        return [
+            'issuerRfc' => $this->issuerRfc,
+            'issuerName' => $this->issuerName,
+            'receiverRfc' => $this->receiverRfc,
+            'receiverName' => $this->receiverName,
+            'uuid' => $this->uuid,
+            'expedition' => $this->expedition,
+            'certification' => $this->certification,
+            'pacRfc' => $this->pacRfc,
+            'total' => $this->total,
+            'state' => $this->state,
+            'efos' => $this->efos,
+            'statusDocument' => $this->statusDocument,
+            'statusEfos' => $this->statusEfos,
+            'totalAmount' => $this->totalAmount,
+        ];
     }
 }

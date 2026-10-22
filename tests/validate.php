@@ -8,22 +8,21 @@ error_reporting(-1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+/** @var list<string> $argv */
 exit((function () use ($argv): int {
     try {
         $filename = $argv[1] ?? '';
         if (in_array($filename, ['', '-h', '--help'])) {
             $command = basename($argv[0]);
-            echo implode(PHP_EOL, [
-                'Script to validate a CFDI retentions',
-                '',
-                'Syntax:',
-                "   $command -h|--help show command help",
-                "   $command retentions-file.xml show status for the given XML file",
-                '',
-                'Copyright and license: https://github.com/phpcfdi/sat-estado-retenciones',
-                '',
-                '',
-            ]);
+            echo <<< EOH
+                Script to validate a CFDI retentions
+
+                Syntax:
+                    $command -h|--help show command help
+                    $command retentions-file.xml show status for the given XML file
+
+                Copyright and license: https://github.com/phpcfdi/sat-estado-retenciones
+                EOH, PHP_EOL, PHP_EOL;
             return 0;
         }
 

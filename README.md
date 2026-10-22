@@ -23,7 +23,7 @@ El Servicio de Administración Tributaria en México (SAT) expone algunos servic
 Para el caso de *CFDI regulares* (CFDI de ingresos, egresos, traslados y nómina) ofrece un web service de tipo
 SOAP para poder conocer el estado (vigente o cancelado) de un CFDI.
 
-Para el caso de *CFDI de Retenciones e Información de Pagos (CFDI de retenciones) no ofrece un web service.
+Para el caso de *CFDI de Retenciones e Información de Pagos* (CFDI de retenciones) no ofrece un web service.
 El SAT solo permite consultar su estado a través de una página de internet ubicada en
 <https://prodretencionverificacion.clouda.sat.gob.mx/> y aparentemente protegida por un *captcha*.
 
@@ -47,7 +47,7 @@ use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
 use PhpCfdi\SatEstadoRetenciones\Service;
 
-$contents = file_get_contents('archivo-de-retenciones.xml');
+$contents = file_get_contents('cfdi-de-retenciones.xml');
 
 $service = new Service();
 $parameters = $service->makeParametersFromXml($contents);
@@ -151,6 +151,7 @@ sin temor a romper tu aplicación.
 | 1.1.0                    | 7.3, 7.4, 8.0, 8.1, 8.2, 8.3 |
 | 2.0.0                    | 8.2, 8.3                     |
 | 2.1.0                    | 8.2, 8.3, 8.4                |
+| 2.1.1                    | 8.2, 8.3, 8.4, 8.5           |
 
 - [Guía de actualización de la versión 1.x a 2.x](docs/UPGRADE_v1_v2.md).
 
