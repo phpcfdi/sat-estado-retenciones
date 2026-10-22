@@ -4,6 +4,22 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
+## Versión 2.1.1
+
+- Se permiten usar los componentes de Symfony 8.0.
+- Se agregan las pruebas para el soporte de PHP 8.5.
+- Se actualiza el año de la licencia a 2026.
+- Se excluye el archivo `.editorconfig` del paquete de Git.
+
+Cambios al entorno de desarrollo:
+
+- En los flujos de trabajo de GitHub:
+    - Se actializan las versiones de las acciones.
+    - Se agrega PHP 8.5 a la matriz de pruebas.
+    - Se ejecutan los trabajos en PHP 8.5.
+    - Se elimina la extensión SOAP cuando se instalan paquetes.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 2.1.0
 
 Esta versión principalmente arregla el soporte de PHP 8.4.
