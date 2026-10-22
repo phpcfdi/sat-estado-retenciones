@@ -8,6 +8,7 @@ error_reporting(-1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+/** @var list<string> $argv */
 exit((function () use ($argv): int {
     try {
         $filename = $argv[1] ?? '';
